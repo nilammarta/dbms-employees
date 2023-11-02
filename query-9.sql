@@ -30,7 +30,7 @@ FROM employees e
          JOIN employees em ON em.emp_no = dm.emp_no
 
          JOIN(SELECT emp_no,
-                     max(salaries.to_date) AS salaries_max_to_date
+                     MAX(salaries.to_date) AS salaries_max_to_date
               FROM salaries
               GROUP BY emp_no) last_salary ON last_salary.emp_no = e.emp_no
          JOIN salaries s ON e.emp_no = s.emp_no AND s.to_date = last_salary.salaries_max_to_date;
